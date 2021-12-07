@@ -23,3 +23,44 @@ Additional considerations:
   - What needs to live in a persistence layer?
 - Is there some state we need to initialize?
 - Ask: should any of this work be abstracted into functions? (i.e., is the work complicated? can it be resused?)
+
+
+HTML SETUP
+6 Buttons
+    - Create Form
+        - 3 Inputs, 1 poll question, 2 options
+        - Button
+    -option A add
+    -option B add
+    -option A undo
+    -option B undo
+    -End poll
+- Current Pole Div
+    - has name of current Pole
+    - option A + option B
+    - option A votes + option B votes
+-Past Polls
+    - empty div to inject closed polls/history list
+
+EVENTS
+
+Form Submit/Create Poll
+    - prevents default behavior
+    - grabs data from form using `new FormData`
+    - update state of Current Poll Question and Options
+    - Display that in the DOM
+    - initialize the form inputs
+
+OptionA/B Add/Subtract Buttons
+    - increments/decrements for that option
+    - Updates the DOM
+
+End Poll Button
+    - Resets the current poll Display Element
+    - Pushes the current Pole into an Array of Poll History
+    - Displays the Poll History Array in the Poll History Div
+        -resets the DisplayDiv
+        - loops through and pushes to a render function which returns HTML Divs
+        - injects HTML Divs into Poll History Display Div with looping and append?
+    - Resets poll Name/Options + Votes
+

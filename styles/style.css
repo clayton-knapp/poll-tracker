@@ -89,3 +89,41 @@ footer {
     background-color: var(--color3);
     box-shadow: var(--shadow);
 }
+
+#poll-form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    border: 1px black solid;
+    padding: 10px;
+}
+
+form label {
+    margin: 5px;
+}
+
+.button-container {
+    display: flex;
+    flex-direction: row;
+    border: solid 1px black;
+}
+
+.button-container button {
+    margin: 5px;
+}
+
+.button-containers {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.center {
+    display: flex;
+    flex-direction: column;
+}
+
+#end-poll-button {
+    margin: 10px;
+}
