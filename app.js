@@ -121,12 +121,34 @@ function displayAllPolls() {
     pastPollsDiv.textContent = '';
 
         // loops through and pushes to a render function which returns HTML divs
+    let i = 0;
     for (let eachPoll of pastPollsArr) {
             // injects HTML Divs into Past Polls Display Div with append
         const pollDiv = renderPoll(eachPoll);
+
+        // adds an id equal to index number of array
+        pollDiv.setAttribute('id', i);
         pastPollsDiv.append(pollDiv);
+
+        // const poll0 = document.getElementById('0');
+
+        // poll0.addEventListener('click', ()=>{
+        //     alert('poll 0');
+        // });
+
+        // const poll1 = document.getElementById('1');
+
+        // poll1.addEventListener('click', ()=>{
+        //     alert('poll 1');
+        // });
+
+
+        i++;
     }
 }
+
+
+
 
 // function which returns an object out of current state
 function makePoll(pollQuestion, optionA, optionB, optionAVotes, optionBVotes) {

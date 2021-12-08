@@ -77,3 +77,15 @@ renderOption(option, votes)
 -- returns the container div
 
 
+STRETCH
+
+Allow the user to delete past polls
+2 ways to do it
+1) User hides visibility of past poll in display
+2) By clicking user actually deletes the poll from the array and updates the DOM
+
+Must make Past Poll Elements "clickable"
+
+So for each element displayed we must grab the dom element
+and create an event listener
+So for each poll Div we have to add an ID
