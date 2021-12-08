@@ -64,3 +64,16 @@ End Poll Button
         - injects HTML Divs into Poll History Display Div with looping and append?
     - Resets poll Name/Options + Votes
 
+
+
+Functions
+
+renderOption(option, votes)
+-- what does render option do?
+-- take in option A and votes A OR option B votes B
+-- takes those values
+-- creates p elements
+-- appends them in a container div
+-- returns the container div
+
+

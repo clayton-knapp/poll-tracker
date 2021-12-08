@@ -49,7 +49,7 @@ pollForm.addEventListener('submit', (e)=> {
 
 
     // - Display that in the DOM
-    pollQuestionDisplay.textContent = pollQuestion;
+    // pollQuestionDisplay.textContent = pollQuestion;
     optionADisplay.textContent = optionA;
     optionBDisplay.textContent = optionB;
 
@@ -113,7 +113,7 @@ endPoll.addEventListener('click', ()=>{
     optionB = '';
     optionAVotes = 0;
     optionBVotes = 0;
-    pollQuestionDisplay.textContent = 'Poll Question';
+    // pollQuestionDisplay.textContent = 'Poll Question';
     optionADisplay.textContent = 'Option A';
     optionBDisplay.textContent = 'Option B';
 });

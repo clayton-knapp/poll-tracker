@@ -107,6 +107,7 @@ form label {
     display: flex;
     flex-direction: row;
     border: solid 1px black;
+    margin: 10px
 }
 
 .button-container button {
@@ -131,11 +132,17 @@ form label {
 
 .poll-container {
     border: 1px solid black;
+    margin: 10px;
+
 }
 
 .option-container {
     border: 1px solid black;
     margin: 10px;
+}
+
+.option-container p {
+    margin: 50px;
 }
 
 .both-options-container {
