@@ -22,7 +22,7 @@ const pastPollsDiv = document.querySelector('#past-polls-div');
 
 // let state
 
-let pollQuestion = '';
+let pollQuestion = 'Poll Question';
 let optionA = 'Option A';
 let optionB = 'Option B';
 let optionAVotes = 0;
@@ -140,7 +140,7 @@ function makePoll(pollQuestion, optionA, optionB, optionAVotes, optionBVotes) {
 }
 
 function resetState() {
-    pollQuestion = '';
+    pollQuestion = 'Poll Question';
     optionA = 'Option A';
     optionB = 'Option B';
     optionAVotes = 0;

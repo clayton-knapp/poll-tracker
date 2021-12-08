@@ -150,3 +150,14 @@ form label {
     flex-direction: row;
     justify-content: center;
 }
+
+.big-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.left, .center, .right{
+    /* border: 1px solid black; */
+    margin: 20px
+}
