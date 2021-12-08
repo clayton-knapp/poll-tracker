@@ -1,5 +1,7 @@
 // import functions and grab DOM elements
 
+import { renderPoll } from './render-utils.js';
+
 const pollForm = document.querySelector('#poll-form');
 
 const optionAAdd = document.querySelector('#option-a-add');
@@ -78,45 +80,61 @@ optionBSubtract.addEventListener('click', ()=>{
     displayCurrentPoll();
 });
 
+endPoll.addEventListener('click', ()=>{
+    // - Resets/clears the current poll Display Element
+    currentPollDiv.textContent = '';
+
+    // - Pushes the current Pole into an Array of Poll History
+    // THIS IS WHERE YOU WOULD CALL MAKEPOLL FUNCTION
+    const currentPollData = {
+        pollQuestion,
+        optionA,
+        optionB,
+        optionAVotes,
+        optionBVotes,
+    };
+
+    pastPollsArr.push(currentPollData);
+
+    // - Displays the Poll History Array in the Poll History Div
+    //     -resets the DisplayDiv
+    pastPollsDiv.textContent = '';
+    //     - loops through and pushes to a render function which returns HTML Divs
+    for (let eachPoll of pastPollsArr) {
+        const pollDiv = renderPoll(eachPoll);
+        pastPollsDiv.append(pollDiv);
+    }
+
+    //     - injects HTML Divs into Poll History Display Div with looping and append?
+
+    // - Resets poll Name/Options + Votes - MAKE A RESET FUNCTION?
+    pollQuestion = '';
+    optionA = '';
+    optionB = '';
+    optionAVotes = 0;
+    optionBVotes = 0;
+    pollQuestionDisplay.textContent = 'Poll Question';
+    optionADisplay.textContent = 'Option A';
+    optionBDisplay.textContent = 'Option B';
+});
+
 function displayCurrentPoll() {
     // Clears any current polls in the DOM
     currentPollDiv.textContent = '';
 
-    //Renders HTML
-    // Creates HTML elements
-    const pollContainerDiv = document.createElement('div');
-    const questionEl = document.createElement('p');
-    const optionAContainerDiv = document.createElement('div');
-    const optionBContainerDiv = document.createElement('div');
-    const optionAEl = document.createElement('p');
-    const optionBEl = document.createElement('p');
-    const optionAVotesEl = document.createElement('p');
-    const optionBVotesEl = document.createElement('p');
-    const bothOptionsDiv = document.createElement('div');
+    //Renders HTML - Call renderPoll function
+    //make current object of state
+    const currentPollData = {
+        pollQuestion,
+        optionA,
+        optionB,
+        optionAVotes,
+        optionBVotes,
+    };
 
-    //Sets elements text content to current state
-    questionEl.textContent = pollQuestion;
-    optionAEl.textContent = optionA;
-    optionBEl.textContent = optionB;
-    optionAVotesEl.textContent = optionAVotes;
-    optionBVotesEl.textContent = optionBVotes;
-
-    // Adds class lists to elements for styling
-    pollContainerDiv.classList.add('poll-container');
-    optionAContainerDiv.classList.add('option-container');
-    optionBContainerDiv.classList.add('option-container');
-    
-    //Appends OptionAVotes and OptionAName to individual container Divs
-    optionAContainerDiv.append(optionAVotesEl, optionAEl);
-    optionBContainerDiv.append(optionBVotesEl, optionBEl);
-
-    //Appends OptionA and OptionB divs to outer container div
-    bothOptionsDiv.append(optionAContainerDiv, optionBContainerDiv);
-    bothOptionsDiv.classList.add('both-options-container');
-
-    //Appends Question and options container to pollContainer
-    pollContainerDiv.append(questionEl, bothOptionsDiv);
+    const pollContainerDiv = renderPoll(currentPollData);
 
     //appends pollContainer to our existing hardcoded HTML el currentPoll
     currentPollDiv.append(pollContainerDiv);
+
 }
