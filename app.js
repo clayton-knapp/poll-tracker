@@ -23,8 +23,8 @@ const pastPollsDiv = document.querySelector('#past-polls-div');
 // let state
 
 let pollQuestion = '';
-let optionA = '';
-let optionB = '';
+let optionA = 'Option A';
+let optionB = 'Option B';
 let optionAVotes = 0;
 let optionBVotes = 0;
 let pastPollsArr = [];
@@ -85,37 +85,20 @@ endPoll.addEventListener('click', ()=>{
     currentPollDiv.textContent = '';
 
     // - Pushes the current Pole into an Array of Poll History
-    // THIS IS WHERE YOU WOULD CALL MAKEPOLL FUNCTION
-    const currentPollData = {
-        pollQuestion,
-        optionA,
-        optionB,
-        optionAVotes,
-        optionBVotes,
-    };
+    // Calls makePoll which bundles up current state and returns an object of it
+    const currentPollData = makePoll(pollQuestion, optionA, optionB, optionAVotes, optionBVotes);
 
+    //push the current state object into our polls array
     pastPollsArr.push(currentPollData);
 
     // - Displays the Poll History Array in the Poll History Div
-    //     -resets the DisplayDiv
-    pastPollsDiv.textContent = '';
-    //     - loops through and pushes to a render function which returns HTML Divs
-    for (let eachPoll of pastPollsArr) {
-        const pollDiv = renderPoll(eachPoll);
-        pastPollsDiv.append(pollDiv);
-    }
-
-    //     - injects HTML Divs into Poll History Display Div with looping and append?
+    displayAllPolls();
 
     // - Resets poll Name/Options + Votes - MAKE A RESET FUNCTION?
-    pollQuestion = '';
-    optionA = '';
-    optionB = '';
-    optionAVotes = 0;
-    optionBVotes = 0;
-    // pollQuestionDisplay.textContent = 'Poll Question';
-    optionADisplay.textContent = 'Option A';
-    optionBDisplay.textContent = 'Option B';
+    resetState();
+
+    //calls displayCurrent Poll to show empty current poll div
+    displayCurrentPoll();
 });
 
 function displayCurrentPoll() {
@@ -124,17 +107,47 @@ function displayCurrentPoll() {
 
     //Renders HTML - Call renderPoll function
     //make current object of state
-    const currentPollData = {
+    const currentPollData = makePoll(pollQuestion, optionA, optionB, optionAVotes, optionBVotes);
+
+    //calls renderPoll function which returns HTML of Divs
+    const pollContainerDiv = renderPoll(currentPollData);
+
+    //appends pollContainer to our existing hardcoded HTML element currentPoll
+    currentPollDiv.append(pollContainerDiv);
+}
+
+function displayAllPolls() {
+        // resets the pastPolls Display Div
+    pastPollsDiv.textContent = '';
+
+        // loops through and pushes to a render function which returns HTML divs
+    for (let eachPoll of pastPollsArr) {
+            // injects HTML Divs into Past Polls Display Div with append
+        const pollDiv = renderPoll(eachPoll);
+        pastPollsDiv.append(pollDiv);
+    }
+}
+
+// function which returns an object out of current state
+function makePoll(pollQuestion, optionA, optionB, optionAVotes, optionBVotes) {
+    return {
         pollQuestion,
         optionA,
         optionB,
         optionAVotes,
-        optionBVotes,
+        optionBVotes
     };
-
-    const pollContainerDiv = renderPoll(currentPollData);
-
-    //appends pollContainer to our existing hardcoded HTML el currentPoll
-    currentPollDiv.append(pollContainerDiv);
-
 }
+
+function resetState() {
+    pollQuestion = '';
+    optionA = 'Option A';
+    optionB = 'Option B';
+    optionAVotes = 0;
+    optionBVotes = 0;
+    optionADisplay.textContent = 'Option A';
+    optionBDisplay.textContent = 'Option B';
+}
+
+//calls displayCurrent Poll to show empty current poll div
+displayCurrentPoll();
